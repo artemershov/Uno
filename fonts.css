@@ -1,0 +1,24 @@
+/* ### FONT ### */
+
+@import url(http://fonts.googleapis.com/css?family=Bowlby+One+SC);
+
+body {
+	font-family: 'Bowlby One SC', cursive;
+	font-weight: normal;
+}
+.card .uno .value { font-size: 48px; }
+.card .add .value , .card .wild .value { font-size: 96px; }
+.card .num .value { font-size: 140px; }
+.card .reverse .value , .card .skip .value { font-size: 200px;line-height: 100px; }
+.card .add .value { letter-spacing: 0;text-indent: -5px }
+
+.card .marker { top: 0px; }
+.card .skip .marker, .card .reverse .marker { top: -14px; }
+.card .add .marker { left: 3px; }
+
+section #selectcolor h3 {
+	margin: 30px 0 10px;
+}
+section #active div.skip {
+	line-height: 105px;
+}

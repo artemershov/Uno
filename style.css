@@ -1,0 +1,241 @@
+ /* ### BODY ### */
+
+* {
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	float: none;
+}
+body {
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	overflow: hidden;
+	background: #EEE;
+	font-family: 'Impact';
+	/*font-weight: 900;*/
+	font-size: 24px;
+	text-transform: uppercase;
+}
+
+/* ### CARDS ### */
+
+.card, .card .front, .card .back {
+	height: 220px;
+	width: 150px;
+	border-radius: 10px;
+	position: relative;
+}
+.card .front, .card .back {
+	position: absolute;
+	top: 14px;
+	left: 14px;
+}
+.card {
+	display: inline-block;
+	padding: 14px;
+	margin: 20px;
+	background: #FFF;
+	border: 1px solid #EEE;
+	box-shadow: 1px 3px 5px rgba(0,0,0,0.2);
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+	color: #FFF;
+}
+
+.card .uno { background: #333333; }
+.card .black { background: #111111; }
+.card .red, #selectcolor #red { background: #CC0000; }
+.card .blue, #selectcolor #blue { background: #006699; }
+.card .green, #selectcolor #green { background: #11AA11; }
+.card .yellow, #selectcolor #yellow { background: #FF9900; }
+
+.card .value {
+	width: 150px;
+	height: 150px;
+	position: absolute;
+	top: 0px;
+	transform:rotate(15deg);
+	background: rgba(255,255,255,0.3);
+	border-radius: 100%;
+	padding: 35px 0;
+	text-align: center;
+	line-height: 150px;
+}
+.card .uno .value { font-size: 64px; }
+.card .add .value , .card .wild .value { font-size: 120px; }
+.card .num .value { font-size: 160px; }
+.card .reverse .value , .card .skip .value { font-size: 200px; }
+.card .add .value { line-height: 130px; }
+.card .add .value { letter-spacing: 5px;text-indent: -10px }
+
+.card .marker {
+	text-align: left;
+	position: absolute;
+	top: 5px;
+	left: 10px;
+	font-size: 24px;
+}
+.card .skip .marker, .card .reverse .marker {
+	font-size: 36px;
+	top: -1px;
+}
+.card .add .marker {
+	left: 3px;
+}
+.card .descr {
+	width: 150px;
+	position: absolute;
+	bottom: 15px;
+	text-align: center;
+	font-size: 16px;
+	letter-spacing: 2px;
+	text-shadow: 1px 2px 3px rgba(0,0,0,0.5);
+}
+
+.card .num .descr { display: none; }
+
+
+/* ### CARDS ON HANDS ### */
+
+section.hand {
+	display: none;
+	width: 100%;
+	height: 250px;
+	position: absolute;
+	text-align: center;
+}
+
+section.hand .card .front { visibility: hidden; }
+
+section.player1 {
+	bottom: -80px;
+	left: 50%;
+	margin-left: -50%;
+	z-index: 100;
+	transition: transform 0.1s ease;
+}
+section.player1 .card .front { visibility: visible; }
+section.player1 .card .back { visibility: hidden; }
+
+section.player1:hover {
+	transform: translatey(-50px);
+	transition: transform 0.1s ease;
+}
+section.player2 {
+	top: 50%;
+	left: 45px;
+	margin-top: -125px;
+	margin-left: -50%;
+	transform: rotate(90deg) scale(0.5,0.5);
+}
+section.player3 {
+	top: -80px;
+	left: 50%;
+	margin-left: -50%;
+	transform: rotate(180deg) scale(0.5,0.5);
+}
+section.player4 {
+	top: 50%;
+	right: 45px;
+	margin-top: -125px;
+	margin-right: -50%;
+	transform: rotate(270deg) scale(0.5,0.5);
+}
+section.hand .card {
+	margin: 0 -30px; 
+	transition: all 0.1s ease;
+}
+section.hand .card:hover {
+	margin-left: -10px;
+	margin-right: -10px; 
+	transform: scale(1.1,1.1) translate(-20px,-20px) rotate(-5deg);
+	transition: all 0.1s ease;
+}
+section.player1 .card:active {
+	transition: none;
+}
+
+/* ### CARDS ON DECK ### */
+
+section.decks {
+	display: none;
+	width: 880px;
+	height: 290px;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -180px 0 0 -440px;
+}
+
+section #active, section #selectcolor, section #carddeck, section #gamedeck {
+	width: 220px;
+	height: 290px;
+	position: absolute;
+	top:0;
+}
+section #active { left: 0px; }
+section #carddeck { left: 220px; }
+section #gamedeck { left: 440px; }
+section #selectcolor { left: 660px; }
+section #carddeck .card, section #gamedeck .card {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+section #carddeck .card, section #gamedeck .card { box-shadow: none; }
+section #carddeck .card:first-child, section #gamedeck .card:first-child { box-shadow: 1px 3px 5px rgba(0,0,0,0.2); }
+section #carddeck .card .front {display: none;}
+section #gamedeck .card .back {display: none;}
+section #selectcolor {
+	display: none;
+	text-align: center;
+	z-index: 10;
+}
+
+section #selectcolor div {
+	display: inline-block;
+	width: 70px;
+	height: 70px;
+	margin:5px;
+	border-radius: 10px;
+	box-shadow: 1px 3px 5px rgba(0,0,0,0.2);
+}
+section #selectcolor div:hover {
+	transform: scale(1.1,1.1);
+}
+section #selectcolor h3 {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 45px 0 10px;
+}
+
+section #active div {
+	display: none;
+	width: 120px;
+	height: 120px;
+	position: absolute;
+	top: 65px;
+	left: 35px;
+	border-radius: 100%;
+	border: 15px solid #FFF;
+	box-shadow: 1px 3px 5px rgba(0,0,0,0.2);
+	text-shadow: 2px 3px 5px rgba(0,0,0,0.5);
+	background: #333;
+	color:#FFF;
+	text-align: center;
+	transform: rotate(15deg);
+}
+section #active div.num {
+	font-size: 72px;
+	line-height: 120px;
+	text-indent: -10px;
+}
+section #active div.skip {
+	font-size: 120px;
+	line-height: 125px;
+}
+
+body > .card .front { visibility: visible; }
+body > .card .back { visibility: hidden; }
+
