@@ -10,6 +10,20 @@ var uno = {
 			this.shortname = shortname;
 			this.descr = descr;
 			this.cssClass = cssClass;
+	
+			var cT  =	"<div class=\"card\" data-color=\""+this.color+"\" data-shortname=\""+this.shortname+"\">";
+				cT +=		"<div class=\"front "+this.color+" "+this.cssClass+"\">";
+				cT +=			"<div class=\"value\">"+this.name+"</div>";
+				cT +=			"<div class=\"marker\">"+this.name+"</div>";
+				cT +=			"<div class=\"descr\">"+this.descr+"</div>";
+				cT +=		"</div>";
+				cT +=		"<div class=\"back uno\">";
+				cT +=			"<div class=\"value\">UNO</div>";
+				cT +=		"</div>";
+				cT +=	"</div>";
+
+			this.render = cT;
+	
 			return this;
 		};
 		for ( c=1;c<=4;c++ ) {
@@ -37,17 +51,12 @@ var uno = {
 
 	// RENDER
 
-	cardTemplate: "<div class=\"card\" data-color=\"${color}\" data-shortname=\"${shortname}\"><div class=\"front ${color} ${cssClass}\"><div class=\"value\">${name}</div><div class=\"marker\">${name}</div><div class=\"descr\">${descr}</div></div><div class=\"back uno\"><div class=\"value\">UNO</div></div></div>",
-	cardRender: function(T) {
-		$.template('render',this.cardTemplate);
-		var card = $.tmpl('render',T);
-		return card;
-	},
 	render: function() {
+
 		for ( i=1;i<=this.numOfPlayer;i++ ) { $('<section />').addClass('hand player'+i).appendTo('body'); }
 		for ( i=this.deck.length-1;i>=0;i-- ) {
 			var r = Math.floor(Math.random()*this.deck.length);
-			$('#carddeck').append( this.cardRender( this.deck[r] ) );
+			$('#carddeck').append( this.deck[r].render );
 			this.deck.splice(r,1);
 		}
 		$('section').fadeIn();
@@ -294,10 +303,7 @@ var uno = {
 
 	playerTurn: 1,
 	reverse: false,
-	reverseToggle: function () {
-		if ( this.reverse === true ) { this.reverse = false }
-		else { this.reverse = true }
-	},
+	reverseToggle: function () { this.reverse = !this.reverse },
 	nextTurn: function() {
 		console.log(this.playerTurn+" : "+this.cardToTacke);
 		if ( $('section.player'+uno.playerTurn+' .card').length == 0 ) {
@@ -329,7 +335,6 @@ var uno = {
 		}
 	},
 	myTurn: function() {
-		$('section.player1').sortable();
 		$('body')
 			.delegate('*','mousedown',function(e) { e.preventDefault();return false; })
 			.delegate('#carddeck','click',function() { if ( uno.playerTurn == 1 ) { uno.pass() } })
