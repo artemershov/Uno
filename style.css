@@ -111,7 +111,6 @@ body {
 /* ### CARDS ON HANDS ### */
 
 section.hand {
-	display: none;
 	width: 100%;
 	height: 250px;
 	position: absolute;
@@ -182,7 +181,6 @@ section.hand .card .front,
 section.player1 .card .back {visibility: hidden;}
 section.player1 .card .front {visibility: visible;}
 section.hand .card {margin: 0 -30px;}
-
 section.hand .card:hover {
 	margin-left: -10px;
 	margin-right: -10px;
@@ -193,10 +191,15 @@ section.hand .card:hover {
 	transform: scale(1.1,1.1) translate(-20px,-20px) rotate(-5deg);
 }
 
+/* ### CARDS ANIMATION ### */
+
+body > .card .front {visibility: visible;}
+body > .card .back {visibility: hidden;}
+
+
 /* ### CARDS ON DECK ### */
 
 section.decks {
-	display: none;
 	width: 880px;
 	height: 290px;
 	position: absolute;
@@ -299,6 +302,4 @@ section #active div.skip {
 	line-height: 125px;
 }
 
-body > .card .front {visibility: visible;}
-body > .card .back {visibility: hidden;}
 
